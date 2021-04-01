@@ -4,11 +4,12 @@ function myFunction() {
 
   var url = "";
   chrome.tabs.query({ currentWindow: true, active: true }, function (tabs) {
-    console.log("url", tabs[0].url);
+
     url = tabs[0].url;
 
     document.getElementById("demo").innerHTML = url;
-    fetch("https://localhost:5000/test", {
+
+    fetch("http://localhost:5000/test", {
       method: "post",
       headers: {
         Accept: "application/json, text/plain, */*",
@@ -19,7 +20,4 @@ function myFunction() {
       .then((res) => res.json())
       .then((res) => console.log(res));
   });
-
-  /*
-   */
 }
