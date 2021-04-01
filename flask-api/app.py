@@ -1,5 +1,5 @@
 from flask import Flask, jsonify, request, render_template
-
+from getUrls import collect_url_links
 
 app = Flask(__name__)  # create an app instance
 
@@ -17,7 +17,7 @@ def testfn():
         return jsonify(message)  # serialize and use JSON headers
     # POST request
     if request.method == "POST":
-        print(request.get_json())  # parse as JSON
+        print(collect_url_links(request.get_json()["tabUrl"]))  # parse as JSON
         return "Sucesss", 200
 
 
