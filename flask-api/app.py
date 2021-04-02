@@ -1,6 +1,10 @@
 from flask import Flask, jsonify, request, render_template
+
+from predictor import predict
+
 from getUrls import collect_url_links
 from getPolicyText import getPolicies
+
 
 app = Flask(__name__)  # create an app instance
 
@@ -23,6 +27,14 @@ def testfn():
             with open("output.txt", "a") as f:
                 print(getPolicies(link), file=f)
         return "Sucesss", 200
+
+@app.route("/predict")
+def check_if_bad():
+    sentence = [request.args.get('sentence')]
+    if predict(sentence):
+        return 'sentence is bad'
+    else:
+        return 'sentence is good'
 
 
 if __name__ == "__main__":  # on running python app.py
