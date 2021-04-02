@@ -1,5 +1,6 @@
 from flask import Flask, jsonify, request, render_template
 from getUrls import collect_url_links
+from getPolicyText import getPolicies
 
 app = Flask(__name__)  # create an app instance
 
@@ -17,7 +18,9 @@ def testfn():
         return jsonify(message)  # serialize and use JSON headers
     # POST request
     if request.method == "POST":
-        print(collect_url_links(request.get_json()["tabUrl"]))  # parse as JSON
+        url_list = collect_url_links(request.get_json()["tabUrl"])  # parse as JSON
+        for link in url_list:
+            print(getPolicies(link))
         return "Sucesss", 200
 
 

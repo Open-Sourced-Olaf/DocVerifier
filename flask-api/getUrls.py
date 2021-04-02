@@ -11,7 +11,7 @@ def collect_url_links(url_link)->list:
 
   a_tag = soup.find_all("a") #Gives you the list of all the a tags
   for i in a_tag:
-    if i.text in ["Privacy", "Terms"]:
+    if i.text in ["Privacy", "Terms", "Privacy Policy", "Terms of Service"]:
         url = i["href"]
         url_list.append(url)
 
