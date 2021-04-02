@@ -8,7 +8,8 @@
 "default_popup": "window.html"
 },
 "permissions": [
-    "tabs"
+    "tabs",
+    "http://localhost/*"
 ]
 
 }
