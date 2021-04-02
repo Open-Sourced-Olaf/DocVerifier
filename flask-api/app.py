@@ -20,7 +20,8 @@ def testfn():
     if request.method == "POST":
         url_list = collect_url_links(request.get_json()["tabUrl"])  # parse as JSON
         for link in url_list:
-            print(getPolicies(link))
+            with open("output.txt", "a") as f:
+                print(getPolicies(link), file=f)
         return "Sucesss", 200
 
 

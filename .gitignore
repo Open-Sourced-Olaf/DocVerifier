@@ -131,3 +131,5 @@ dmypy.json
 #python virtual environment
 Pipfile
 Pipfile.lock
+.vscode/
+/.vscode
