@@ -4,7 +4,6 @@ function myFunction() {
 
   var url = "";
   chrome.tabs.query({ currentWindow: true, active: true }, function (tabs) {
-
     url = tabs[0].url;
 
     document.getElementById("demo").innerHTML = url;
@@ -21,3 +20,10 @@ function myFunction() {
       .then((res) => console.log(res));
   });
 }
+var file = document.getElementById("file").files[0];
+var reader = new FileReader();
+reader.onload = function (e) {
+  console.log(e.target.result);
+  alert(e.target.result);
+};
+reader.readAsText(file);
