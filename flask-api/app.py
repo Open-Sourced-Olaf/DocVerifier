@@ -25,5 +25,18 @@ def testfn():
         return "Sucesss", 200
 
 
+@app.route("/uploads", methods=["GET", "POST"])
+def uploads():
+    # GET request
+    if request.method == "GET":
+        message = {"greeting": "Hello from Flask!"}
+        return jsonify(message)  # serialize and use JSON headers
+    # POST request
+    if request.method == "POST":
+        print("file", request.files["file"])
+        print(request)
+        return "Sucesss", 200
+
+
 if __name__ == "__main__":  # on running python app.py
     app.run(debug=True)  # run the flask app
