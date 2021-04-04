@@ -2,9 +2,9 @@
 A tool to summarize and report any flaws in a long agreement/text.
 
 # Features
-
+- http://127.0.0.1:8000/?canisterId=rwlgt-iiaaa-aaaaa-aaaaa-cai
 <p align="center">
-<img src="https://i.ibb.co/d6c1zfT/code.png" alt="code">
+<img src="" alt="code">
 </p>
 
 ## How does it work
