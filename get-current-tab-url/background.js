@@ -20,10 +20,3 @@ function myFunction() {
       .then((res) => console.log(res));
   });
 }
-var file = document.getElementById("file").files[0];
-var reader = new FileReader();
-reader.onload = function (e) {
-  console.log(e.target.result);
-  alert(e.target.result);
-};
-reader.readAsText(file);
