@@ -1,0 +1,22 @@
+{
+  "name": "frontend_assets",
+  "version": "0.1.0",
+  "description": "",
+  "keywords": [],
+  "scripts": {
+    "build": "webpack"
+  },
+  "devDependencies": {
+    "@dfinity/agent": "0.6.21",
+    "terser-webpack-plugin": "2.2.2",
+    "webpack": "4.41.3",
+    "webpack-cli": "3.3.10"
+  },
+  "dependencies": {
+    "axios": "^0.21.1",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2",
+    "ts-loader": "^8.1.0",
+    "typescript": "^4.2.3"
+  }
+}
