@@ -1,5 +1,5 @@
 # DocVerifier
-A tool to summarize and report any flaws in a long agreement/text.
+A tool to summarize and report any flaws in a long agreement/text. This tool will help us to protect ourselves from accepting malicious agreetments, privacy policies, terms and conditions etc. It uses Naive Bayes classification to make the predictions.
 
 ### Deployed Url in DFINITY 
 - https://rwlgt-iiaaa-aaaaa-aaaaa-cai.ic0.app/
