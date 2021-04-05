@@ -3,6 +3,8 @@ from werkzeug.utils import secure_filename
 from getUrls import collect_url_links
 from getPolicyText import getPolicies
 import os
+#importing module
+import logging
 
 from flask_cors import CORS, cross_origin
 
@@ -15,7 +17,24 @@ cors = CORS(app)
 app.config["CORS_HEADERS"] = "Content-Type"
 
 app.config["UPLOADS"] = UPLOAD_FOLDER
+#Create and configure logger
+logging.basicConfig(filename="newfile.log",
+                    format='%(asctime)s %(message)s',
+                    filemode='w')
 
+
+#Creating an object
+logger=logging.getLogger()
+  
+#Setting the threshold of logger to DEBUG
+logger.setLevel(logging.DEBUG)
+  
+#Test messages
+logger.debug("Harmless debug Message")
+logger.info("Just an information")
+logger.warning("Its a Warning")
+logger.error("Did you try to divide by zero")
+logger.critical("Internet is down")
 
 @app.route("/test", methods=["GET", "POST"])
 @cross_origin()
@@ -30,6 +49,7 @@ def testfn():
         for link in url_list:
             with open("output.txt", "w") as f:
                 print(getPolicies(link), file=f)
+                logger.info("scraping complete")
         return "Sucesss", 200
 
 
@@ -49,6 +69,7 @@ def uploads():
         print("File uploaded to " + os.path.join(app.config["UPLOADS"], filename))
         print("file", request.files["file"])
         print(request)
+        logger.info("upload file done")
         return "Sucesss", 200
 
 
