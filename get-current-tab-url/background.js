@@ -16,7 +16,16 @@ function myFunction() {
       },
       body: JSON.stringify({ tabUrl: url }),
     })
-      .then((res) => res.json())
-      .then((res) => console.log(res));
+      .then(function (res) {
+        return res.json();
+      })
+      .then(function (data) {
+        
+        document.getElementById("out").innerHTML = data["greeting"];
+      });
   });
+}
+document.getElementById("resultButton").addEventListener("click", predict);
+function predict() {
+  window.open("http://localhost:5000/predict");
 }

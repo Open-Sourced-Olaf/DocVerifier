@@ -3,7 +3,7 @@ from flask import Flask, jsonify, request, render_template
 from werkzeug.utils import secure_filename
 
 
-from predictor import predict
+from predictor import check_if_bad
 
 from getUrls import collect_url_links
 from getPolicyText import getPolicies
@@ -52,12 +52,20 @@ def testfn():
         return jsonify(message)  # serialize and use JSON headers
     # POST request
     if request.method == "POST":
-        url_list = collect_url_links(
-            request.get_json()["tabUrl"])  # parse as JSON
+        tabUrl = request.get_json()["tabUrl"]
+        # tabUrl.split('/')
+        print(tabUrl)
+        url_list = collect_url_links(tabUrl)  # parse as JSON
         for link in url_list:
             with open("output.txt", "w") as f:
                 print(getPolicies(link), file=f)
                 logger.info("scraping complete")
+        data = check_if_bad()
+        print(data)
+        print(data["bad"])
+        print(data["good"])
+        message = data
+        return jsonify(message)
         return "Sucesss", 200
 
 
@@ -93,16 +101,16 @@ def check_if_bad():
     #sentences = [sentences]
     #sentence = [request.args.get('sentence')]
     for sentence in sentences:
-        print(sentence)
-        print("\n")
-        if(len(sentence)>100):
-            if predict(sentence):
-                good.append(sentence)
-                print(sentence, 'sentence is bad')
-            else:
-                bad.append(sentence)
-                print(sentence, 'sentence is good')
-    return {'good': good, 'bad': bad}
+        # print(sentence)
+        # print("\n")
+        # if(len(sentence) > 100):
+        #     if predict(sentence):
+        #         good.append(sentence)
+        #         #print(sentence, 'sentence is bad')
+        #     else:
+        #         bad.append(sentence)
+        #         #print(sentence, 'sentence is good')
+        return {'good': good, 'bad': bad}
 
 
 if __name__ == "__main__":  # on running python app.py
