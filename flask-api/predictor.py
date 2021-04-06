@@ -64,8 +64,8 @@ def check_if_bad():
         if(len(sentence) > 100):
             if predict(sentence):
                 good.append(sentence)
-                #print(sentence, 'sentence is bad')
+                print(sentence, 'sentence is bad')
             else:
                 bad.append(sentence)
-                #print(sentence, 'sentence is good')
+                print(sentence, 'sentence is good')
     return {'good': good, 'bad': bad}

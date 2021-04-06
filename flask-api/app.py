@@ -3,7 +3,7 @@ from flask import Flask, jsonify, request, render_template
 from werkzeug.utils import secure_filename
 
 
-from predictor import check_if_bad
+from predictor import predict
 
 from getUrls import collect_url_links
 from getPolicyText import getPolicies
@@ -60,11 +60,29 @@ def testfn():
             with open("output.txt", "w") as f:
                 print(getPolicies(link), file=f)
                 logger.info("scraping complete")
-        data = check_if_bad()
-        print(data)
-        print(data["bad"])
-        print(data["good"])
-        message = data
+        with open("output.txt") as f:
+         text = f.read()
+        sentences = re.split(r' *[\.\?!][\'"\)\]]* *', text)
+        bad = []
+        good = []
+        output = {}
+        #sentences = [sentences]
+        #sentence = [request.args.get('sentence')]
+        for sentence in sentences:
+            # print(sentence)
+            # print("\n")
+            if(len(sentence) > 100):
+                if predict(sentence):
+                    good.append(sentence)
+                    #print(sentence, 'sentence is bad')
+                else:
+                    bad.append(sentence)
+                    #print(sentence, 'sentence is good')
+        data = {'good': good, 'bad': bad}
+        #print(data)
+        print("bad",data["bad"][0])
+        print("good",data["good"][0])
+        message ={"good":data["bad"][0],"bad":data["bad"][0]}
         return jsonify(message)
         return "Sucesss", 200
 
