@@ -10,6 +10,6 @@
 # dfx temporary files
 .dfx/
 
-# frontend code
+# custom_greeting code
 node_modules/
 dist/

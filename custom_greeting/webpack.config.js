@@ -30,17 +30,17 @@ const aliases = Object.entries(dfxJson.canisters).reduce(
  * Generate a webpack configuration for a canister.
  */
 function generateWebpackConfigForCanister(name, info) {
-  if (typeof info.frontend !== "object") {
+  if (typeof info.custom_greeting !== "object") {
     return;
   }
 
   return {
     mode: "production",
     entry: {
-      index: path.join(__dirname, info.frontend.entrypoint),
+      index: path.join(__dirname, info.custom_greeting.entrypoint),
     },
     node: {
-      fs: "empty"
+      fs: "empty",
     },
     devtool: "source-map",
     optimization: {
@@ -60,12 +60,12 @@ function generateWebpackConfigForCanister(name, info) {
     // webpack configuration. For example, if you are using React
     // modules and CSS as described in the "Adding a stylesheet"
     // tutorial, uncomment the following lines:
-     module: {
-     rules: [
-      { test: /\.(js|ts)x?$/, loader: "ts-loader" },
-    //    { test: /\.css$/, use: ['style-loader','css-loader'] }
-      ]
-   },
+    module: {
+      rules: [
+        { test: /\.(js|ts)x?$/, loader: "ts-loader" },
+        //    { test: /\.css$/, use: ['style-loader','css-loader'] }
+      ],
+    },
     plugins: [],
   };
 }
