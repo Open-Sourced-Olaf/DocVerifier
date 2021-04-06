@@ -1,8 +1,8 @@
 {
-  "frontend": {
+  "custom_greeting": {
     "ic": "qa7ab-siaaa-aaaab-aa53q-cai"
   },
-  "frontend_assets": {
+  "custom_greeting_assets": {
     "ic": "rnrep-5aaaa-aaaab-aa54a-cai"
   }
 }

@@ -3,7 +3,7 @@ from flask import Flask, jsonify, request, render_template
 from werkzeug.utils import secure_filename
 
 
-from predictor import predict
+# from predictor import predict
 
 from getUrls import collect_url_links
 from getPolicyText import getPolicies
@@ -78,13 +78,13 @@ def uploads():
         logger.info("upload file done")
         return "Sucesss", 200
 
-@app.route("/predict")
-def check_if_bad():
-    sentence = [request.args.get('sentence')]
-    if predict(sentence):
-        return 'sentence is bad'
-    else:
-        return 'sentence is good'
+# @app.route("/predict")
+# def check_if_bad():
+#     sentence = [request.args.get('sentence')]
+#     if predict(sentence):
+#         return 'sentence is bad'
+#     else:
+#         return 'sentence is good'
 
 
 if __name__ == "__main__":  # on running python app.py

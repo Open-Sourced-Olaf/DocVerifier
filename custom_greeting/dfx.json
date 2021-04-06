@@ -1,19 +1,19 @@
 {
   "canisters": {
-    "frontend": {
-      "main": "src/frontend/main.mo",
+    "custom_greeting": {
+      "main": "src/custom_greeting/main.mo",
       "type": "motoko"
     },
-    "frontend_assets": {
+    "custom_greeting_assets": {
       "dependencies": [
-        "frontend"
+        "custom_greeting"
       ],
-      "frontend": {
-        "entrypoint": "src/frontend_assets/public/index.js"
+      "custom_greeting": {
+        "entrypoint": "src/custom_greeting_assets/public/index.js"
       },
       "source": [
-        "src/frontend_assets/assets",
-        "dist/frontend_assets/"
+        "src/custom_greeting_assets/assets",
+        "dist/custom_greeting_assets/"
       ],
       "type": "assets"
     }
