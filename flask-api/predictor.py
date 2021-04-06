@@ -42,7 +42,7 @@ gs_clf = GridSearchCV(text_clf, parameters, n_jobs=-1)
 gs_clf = gs_clf.fit(training_data, training_target)
 
 def predict(sentence):
-    if gs_clf.predict(sentence) == 1:
+    if gs_clf.predict([sentence]) == 1:
         return True ## it's a bad privacy sentence
     else:
         return False
