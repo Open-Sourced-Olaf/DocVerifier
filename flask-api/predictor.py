@@ -7,11 +7,11 @@ from sklearn.linear_model import SGDClassifier
 import re
 
 good_privacy = []
-with open("good_privacy.txt", "r") as f:
+with open("good_privacy.txt", "r", encoding="utf8") as f:
   for line in f:
     good_privacy.append(line.rstrip())
 bad_privacy = []
-with open("bad_privacy.txt", "r") as f:
+with open("bad_privacy.txt", "r", encoding="utf8") as f:
   for line in f:
     bad_privacy.append(line.rstrip())
 
@@ -50,7 +50,7 @@ def predict(sentence):
 
 
 def check_if_bad():
-    with open("output.txt") as f:
+    with open("output.txt", encoding="utf8") as f:
         text = f.read()
     sentences = re.split(r' *[\.\?!][\'"\)\]]* *', text)
     bad = []

@@ -6,9 +6,11 @@ function myFunction() {
   chrome.tabs.query({ currentWindow: true, active: true }, function (tabs) {
     url = tabs[0].url;
 
-    document.getElementById("demo").innerHTML =
-      "Please wait to see the bad policies";
-
+    document.getElementById("description").style.display = "none";
+    document.getElementById("resultButton").style.display = "none";
+    document.getElementById("loader").style.display = "block";
+    document.getElementById("loading-text").innerHTML = "Loading...";
+    
     fetch("http://localhost:5000/test", {
       method: "post",
       headers: {
@@ -22,6 +24,9 @@ function myFunction() {
       })
       .then(function (data) {
         document.getElementById("out").innerHTML = data["bad"];
+        document.getElementById("resultButton").style.display = "block";
+        document.getElementById("loader").style.display = "none";
+        document.getElementById("loading-text").innerHTML = "";
       });
   });
 }

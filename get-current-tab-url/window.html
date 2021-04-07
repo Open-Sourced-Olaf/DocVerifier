@@ -1,13 +1,26 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <style src="style.css"></style>
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="style.css">
   </head>
   <body>
-    <button id="myButton">Click to verify</button>
-    <p id="demo"></p>
+    <div class="modal-header">
+      <h1 class="logo">
+        <img class="logo-icon" src="./icon.svg"/>DocVerifier
+      </h1>
+    </div>
+    <p id="loading-text"></p>
+    <div id="loader" style="display:none;"></div>
+    <div class="modal-content"  id="description">
+      <p> Be Honest! How many times have you clicked "Accept Terms and Conditions" without reading them? <br>
+         A lot of times, right? But not anymore.</p>
+      <p>DocVerifier is a tool to summarize and report sketchy policies and flaws in long agreements/texts. </p>
+      <button id="myButton">Check the website now!</button>
+    </div>
+
     <p id="out"></p>
-    <button id="resultButton" >Check the results</button>
+    <button id="resultButton" style="display:none;">Check full result</button>
 
     <script src="background.js"></script>
   </body>
