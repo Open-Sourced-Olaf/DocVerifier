@@ -49,23 +49,3 @@ def predict(sentence):
         return False
 
 
-def check_if_bad():
-    with open("output.txt", encoding="utf8") as f:
-        text = f.read()
-    sentences = re.split(r' *[\.\?!][\'"\)\]]* *', text)
-    bad = []
-    good = []
-    output = {}
-    #sentences = [sentences]
-    #sentence = [request.args.get('sentence')]
-    for sentence in sentences:
-        # print(sentence)
-        # print("\n")
-        if(len(sentence) > 100):
-            if predict(sentence):
-                good.append(sentence)
-                print(sentence, 'sentence is bad')
-            else:
-                bad.append(sentence)
-                print(sentence, 'sentence is good')
-    return {'good': good, 'bad': bad}

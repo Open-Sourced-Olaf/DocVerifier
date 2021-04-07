@@ -61,7 +61,7 @@ def testfn():
                 print(getPolicies(link), file=f)
                 logger.info("scraping complete")
         with open("output.txt", encoding="utf8") as f:
-         text = f.read()
+            text = f.read()
         sentences = re.split(r' *[\.\?!][\'"\)\]]* *', text)
         bad = []
         good = []
@@ -79,10 +79,10 @@ def testfn():
                     bad.append(sentence)
                     #print(sentence, 'sentence is good')
         data = {'good': good, 'bad': bad}
-        #print(data)
-        print("bad",data["bad"][0])
-        print("good",data["good"][0])
-        message ={"good":data["bad"][0],"bad":data["bad"][0]}
+        # print(data)
+        #print("bad", data["bad"][0])
+        #print("good", data["good"][0])
+        message = {"good": data["bad"][0], "bad": data["bad"][0]}
         return jsonify(message)
         return "Sucesss", 200
 
@@ -108,7 +108,7 @@ def uploads():
         return "Sucesss", 200
 
 
-@app.route("/predict")
+@app.route("/predict", methods=["GET"])
 def check_if_bad():
     with open("output.txt", encoding="utf8") as f:
         text = f.read()
@@ -121,14 +121,15 @@ def check_if_bad():
     for sentence in sentences:
         # print(sentence)
         # print("\n")
-        # if(len(sentence) > 100):
-        #     if predict(sentence):
-        #         good.append(sentence)
-        #         #print(sentence, 'sentence is bad')
-        #     else:
-        #         bad.append(sentence)
-        #         #print(sentence, 'sentence is good')
-        return {'good': good, 'bad': bad}
+        if(len(sentence) > 100):
+            if predict(sentence):
+                good.append(sentence)
+                #print(sentence, 'sentence is bad')
+            else:
+                bad.append(sentence)
+                #print(sentence, 'sentence is good')
+    print("done")
+    return {'good': good, 'bad': bad}
 
 
 if __name__ == "__main__":  # on running python app.py
