@@ -57,10 +57,10 @@ def testfn():
         print(tabUrl)
         url_list = collect_url_links(tabUrl)  # parse as JSON
         for link in url_list:
-            with open("output.txt", "w") as f:
+            with open("output.txt", "w", encoding="utf8") as f:
                 print(getPolicies(link), file=f)
                 logger.info("scraping complete")
-        with open("output.txt") as f:
+        with open("output.txt", encoding="utf8") as f:
          text = f.read()
         sentences = re.split(r' *[\.\?!][\'"\)\]]* *', text)
         bad = []
@@ -110,7 +110,7 @@ def uploads():
 
 @app.route("/predict")
 def check_if_bad():
-    with open("output.txt") as f:
+    with open("output.txt", encoding="utf8") as f:
         text = f.read()
     sentences = re.split(r' *[\.\?!][\'"\)\]]* *', text)
     bad = []
