@@ -4,6 +4,7 @@ from sklearn.pipeline import Pipeline
 from sklearn.feature_extraction.text import CountVectorizer, TfidfTransformer
 from sklearn.naive_bayes import MultinomialNB
 from sklearn.linear_model import SGDClassifier
+import re
 
 good_privacy = []
 with open("good_privacy.txt", "r") as f:
@@ -46,3 +47,25 @@ def predict(sentence):
         return True ## it's a bad privacy sentence
     else:
         return False
+
+
+def check_if_bad():
+    with open("output.txt") as f:
+        text = f.read()
+    sentences = re.split(r' *[\.\?!][\'"\)\]]* *', text)
+    bad = []
+    good = []
+    output = {}
+    #sentences = [sentences]
+    #sentence = [request.args.get('sentence')]
+    for sentence in sentences:
+        # print(sentence)
+        # print("\n")
+        if(len(sentence) > 100):
+            if predict(sentence):
+                good.append(sentence)
+                print(sentence, 'sentence is bad')
+            else:
+                bad.append(sentence)
+                print(sentence, 'sentence is good')
+    return {'good': good, 'bad': bad}

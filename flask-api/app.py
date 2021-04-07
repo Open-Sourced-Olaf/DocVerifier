@@ -52,12 +52,38 @@ def testfn():
         return jsonify(message)  # serialize and use JSON headers
     # POST request
     if request.method == "POST":
-        url_list = collect_url_links(
-            request.get_json()["tabUrl"])  # parse as JSON
+        tabUrl = request.get_json()["tabUrl"]
+        # tabUrl.split('/')
+        print(tabUrl)
+        url_list = collect_url_links(tabUrl)  # parse as JSON
         for link in url_list:
             with open("output.txt", "w") as f:
                 print(getPolicies(link), file=f)
                 logger.info("scraping complete")
+        with open("output.txt") as f:
+         text = f.read()
+        sentences = re.split(r' *[\.\?!][\'"\)\]]* *', text)
+        bad = []
+        good = []
+        output = {}
+        #sentences = [sentences]
+        #sentence = [request.args.get('sentence')]
+        for sentence in sentences:
+            # print(sentence)
+            # print("\n")
+            if(len(sentence) > 100):
+                if predict(sentence):
+                    good.append(sentence)
+                    #print(sentence, 'sentence is bad')
+                else:
+                    bad.append(sentence)
+                    #print(sentence, 'sentence is good')
+        data = {'good': good, 'bad': bad}
+        #print(data)
+        print("bad",data["bad"][0])
+        print("good",data["good"][0])
+        message ={"good":data["bad"][0],"bad":data["bad"][0]}
+        return jsonify(message)
         return "Sucesss", 200
 
 
@@ -93,16 +119,16 @@ def check_if_bad():
     #sentences = [sentences]
     #sentence = [request.args.get('sentence')]
     for sentence in sentences:
-        print(sentence)
-        print("\n")
-        if(len(sentence)>100):
-            if predict(sentence):
-                good.append(sentence)
-                print(sentence, 'sentence is bad')
-            else:
-                bad.append(sentence)
-                print(sentence, 'sentence is good')
-    return {'good': good, 'bad': bad}
+        # print(sentence)
+        # print("\n")
+        # if(len(sentence) > 100):
+        #     if predict(sentence):
+        #         good.append(sentence)
+        #         #print(sentence, 'sentence is bad')
+        #     else:
+        #         bad.append(sentence)
+        #         #print(sentence, 'sentence is good')
+        return {'good': good, 'bad': bad}
 
 
 if __name__ == "__main__":  # on running python app.py
