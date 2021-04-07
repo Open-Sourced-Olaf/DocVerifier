@@ -133,3 +133,6 @@ Pipfile
 Pipfile.lock
 .vscode/
 /.vscode
+
+#output file
+flask-api/output.txt
