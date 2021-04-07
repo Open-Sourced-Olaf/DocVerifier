@@ -10,8 +10,8 @@ function myFunction() {
     document.getElementById("resultButton").style.display = "none";
     document.getElementById("loader").style.display = "block";
     document.getElementById("loading-text").innerHTML = "Loading...";
-    
-    fetch("http://localhost:5000/test", {
+
+    fetch("https://check-privacy.herokuapp.com/test", {
       method: "post",
       headers: {
         Accept: "application/json, text/plain, */*",
@@ -23,7 +23,7 @@ function myFunction() {
         return res.json();
       })
       .then(function (data) {
-        document.getElementById("out").innerHTML = data["bad"];
+        document.getElementById("out").innerHTML = data["bad"][0];
         document.getElementById("resultButton").style.display = "block";
         document.getElementById("loader").style.display = "none";
         document.getElementById("loading-text").innerHTML = "";
@@ -32,5 +32,5 @@ function myFunction() {
 }
 document.getElementById("resultButton").addEventListener("click", predict);
 function predict() {
-  window.open("http://localhost:5000/predict");
+  window.open("https://check-privacy.herokuapp.com/predict");
 }

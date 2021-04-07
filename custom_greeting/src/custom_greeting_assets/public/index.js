@@ -13,7 +13,19 @@ class App extends React.Component {
     // Update the state
     this.setState({ selectedFile: event.target.files[0] });
   };
-
+  onCheckFile = () => {
+    fetch("http://localhost:5000/checkPDF", {
+      method: "get",
+    })
+      .then(function (res) {
+        return res.json();
+      })
+      .then(function (data) {
+        console.log(data);
+        console.log("good", data["good"]);
+        console.log("bad", data["bad"]);
+      });
+  };
   // On file upload (click the upload button)
   onFileUpload = async () => {
     // Create an object of formData
@@ -79,7 +91,9 @@ class App extends React.Component {
           <input type="file" onChange={this.onFileChange} />
           <button onClick={this.onFileUpload}>Upload!</button>
         </div>
+
         {this.fileData()}
+        <button onClick={this.onCheckFile}>Check the File</button>
       </div>
     );
   }

@@ -46,17 +46,15 @@ logger.critical("Internet is down")
 @app.route("/test", methods=["GET", "POST"])
 @cross_origin()
 def testfn():
-    # GET request
-    if request.method == "GET":
-        message = {"greeting": "Hello from Flask!"}
-        return jsonify(message)  # serialize and use JSON headers
     # POST request
     if request.method == "POST":
         tabUrl = request.get_json()["tabUrl"]
         # tabUrl.split('/')
-        print(tabUrl)
+        # print(tabUrl)
         url_list = collect_url_links(tabUrl)  # parse as JSON
+        print(url_list)
         for link in url_list:
+            print(link)
             with open("output.txt", "w", encoding="utf8") as f:
                 print(getPolicies(link), file=f)
                 logger.info("scraping complete")
@@ -82,18 +80,16 @@ def testfn():
         # print(data)
         #print("bad", data["bad"][0])
         #print("good", data["good"][0])
-        message = {"good": data["bad"][0], "bad": data["bad"][0]}
+        message = {"good": data["bad"], "bad": data["bad"]}
         return jsonify(message)
-        return "Sucesss", 200
+    return jsonify(message)
 
 
-@app.route("/uploads", methods=["GET", "POST"])
+@app.route("/uploads", methods=["POST"])
 @cross_origin()
 def uploads():
     # GET request
-    if request.method == "GET":
-        message = {"greeting": "Hello from Flask!"}
-        return jsonify(message)  # serialize and use JSON headers
+    # serialize and use JSON headers
     # POST request
     if request.method == "POST":
         file = request.files["file"]
@@ -105,7 +101,7 @@ def uploads():
         print("file", request.files["file"])
         print(request)
         logger.info("upload file done")
-        return "Sucesss", 200
+    return "Sucesss", 200
 
 
 @app.route("/predict", methods=["GET"])
