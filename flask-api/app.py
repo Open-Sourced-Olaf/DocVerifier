@@ -1,5 +1,5 @@
 from flask import Flask, jsonify, request, render_template
-
+import PyPDF2
 from werkzeug.utils import secure_filename
 
 
@@ -62,26 +62,7 @@ def testfn():
                 logger.info("scraping complete")
         with open("output.txt", encoding="utf8") as f:
             text = f.read()
-        sentences = re.split(r' *[\.\?!][\'"\)\]]* *', text)
-        bad = []
-        good = []
-        output = {}
-        #sentences = [sentences]
-        #sentence = [request.args.get('sentence')]
-        for sentence in sentences:
-            # print(sentence)
-            # print("\n")
-            if(len(sentence) > 100):
-                if predict(sentence):
-                    good.append(sentence)
-                    #print(sentence, 'sentence is bad')
-                else:
-                    bad.append(sentence)
-                    #print(sentence, 'sentence is good')
-        data = {'good': good, 'bad': bad}
-        # print(data)
-        #print("bad", data["bad"][0])
-        #print("good", data["good"][0])
+        data = predict_text(text)
         message = {"good": data["bad"][0], "bad": data["bad"][0]}
         return jsonify(message)
         return "Sucesss", 200
@@ -99,12 +80,15 @@ def uploads():
         file = request.files["file"]
         filename = secure_filename(file.filename)
         #  uploaded_folder = create_folder_entry(app.config['UPLOAD_FOLDER'],"uploaded")
-        file.save(os.path.join(app.config["UPLOADS"], file.filename))
+        file.save(os.path.join(app.config["UPLOADS"], "output.pdf"))
         print("File uploaded to " +
               os.path.join(app.config["UPLOADS"], filename))
         print("file", request.files["file"])
         print(request)
         logger.info("upload file done")
+
+        print("In upload:", pdfFileName)
+
         return "Sucesss", 200
 
 
@@ -112,7 +96,29 @@ def uploads():
 def check_if_bad():
     with open("output.txt", encoding="utf8") as f:
         text = f.read()
-    sentences = re.split(r' *[\.\?!][\'"\)\]]* *', text)
+    result = predict_text(text)
+    return result
+
+@app.route("/checkPDF", methods=["GET"])
+def check_PDF():
+    pdfFileObj = open(os.path.join(app.config["UPLOADS"], "output.pdf"), 'rb')
+    pdfReader = PyPDF2.PdfFileReader(pdfFileObj)
+
+    fileText = ""
+
+    for i in range(pdfReader.numPages):
+        pageObj = pdfReader.getPage(i)
+        fileText += pageObj.extractText()
+        
+    pdfFileObj.close()
+
+    result = predict_text(fileText)
+    
+    return jsonify(result)
+
+
+def predict_text(textInput):
+    sentences = re.split(r' *[\.\?!][\'"\)\]]* *', textInput)
     bad = []
     good = []
     output = {}
@@ -128,9 +134,9 @@ def check_if_bad():
             else:
                 bad.append(sentence)
                 #print(sentence, 'sentence is good')
-    print("done")
-    return {'good': good, 'bad': bad}
+    data = {'good': good, 'bad': bad}
 
+    return data
 
 if __name__ == "__main__":  # on running python app.py
     app.run(debug=True)  # run the flask app
