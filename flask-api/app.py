@@ -76,7 +76,9 @@ def uploads():
         file = request.files["file"]
         filename = secure_filename(file.filename)
         #  uploaded_folder = create_folder_entry(app.config['UPLOAD_FOLDER'],"uploaded")
-        file.save(os.path.join(app.config["UPLOADS"], "output.pdf"))
+        file.save(os.path.join(app.config["UPLOADS"], file.filename))
+        os.rename(os.path.join(app.config["UPLOADS"], filename),
+                  os.path.join(app.config["UPLOADS"], "output.pdf"))
         print("File uploaded to " +
               os.path.join(app.config["UPLOADS"], filename))
         print("file", request.files["file"])
@@ -95,21 +97,30 @@ def check_if_bad():
     result = predict_text(text)
     return result
 
+
 @app.route("/checkPDF", methods=["GET"])
 def check_PDF():
+    content = ""
+    num_pages = 10
+    # p = file(path, "rb")
+    # pdf = pyPdf.PdfFileReader(p)
+    # for i in range(0, num_pages):
+    #     content += pdf.getPage(i).extractText() + "\n"
+    # content = " ".join(content.replace(u"\xa0", " ").strip().split())
+    # return content
     pdfFileObj = open(os.path.join(app.config["UPLOADS"], "output.pdf"), 'rb')
     pdfReader = PyPDF2.PdfFileReader(pdfFileObj)
 
     fileText = ""
 
-    for i in range(pdfReader.numPages):
-        pageObj = pdfReader.getPage(i)
-        fileText += pageObj.extractText()
-        
+    for i in range(0,10):
+        content += pdfReader.getPage(i).extractText() + "\n"
+    content = " ".join(content.replace(u"\xa0", " ").strip().split())
+
     pdfFileObj.close()
 
-    result = predict_text(fileText)
-    
+    result = predict_text(content)
+
     return jsonify(result)
 
 
@@ -133,6 +144,7 @@ def predict_text(textInput):
     data = {'good': good, 'bad': bad}
 
     return data
+
 
 if __name__ == "__main__":  # on running python app.py
     app.run(debug=True)  # run the flask app

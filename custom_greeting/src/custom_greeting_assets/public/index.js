@@ -3,17 +3,27 @@ import axios from "axios";
 import * as React from "react";
 
 class App extends React.Component {
-  state = {
-    // Initially, no file is selected
-    selectedFile: null,
-  };
+  constructor(props) {
+    super(props);
 
+    this.state = {
+      selectedFile: null,
+      goodData: "good",
+      badData: "bad",
+    };
+
+    this.onCheckFile = this.onCheckFile.bind(this);
+  }
+
+  onResult = () => {
+    window.open("http://localhost:5000/checkPDF");
+  };
   // On file select (from the pop up)
   onFileChange = (event) => {
     // Update the state
     this.setState({ selectedFile: event.target.files[0] });
   };
-  onCheckFile = () => {
+  onCheckFile () {
     fetch("http://localhost:5000/checkPDF", {
       method: "get",
     })
@@ -22,8 +32,13 @@ class App extends React.Component {
       })
       .then(function (data) {
         console.log(data);
-        console.log("good", data["good"]);
-        console.log("bad", data["bad"]);
+
+        console.log("bad", data["bad"][0]);
+        
+        console.log("good", data["good"][0]);
+        this.setState({ goodData: data["good"][0] });
+        this.setState({ badData: data["bad"][0] });
+        
       });
   };
   // On file upload (click the upload button)
@@ -92,8 +107,15 @@ class App extends React.Component {
           <button onClick={this.onFileUpload}>Upload!</button>
         </div>
 
-        {this.fileData()}
         <button onClick={this.onCheckFile}>Check the File</button>
+        {this.fileData()}
+        {this.state.goodData ? (
+          <div>
+            <p>Good data:{this.state.goodData}</p>
+            <p>Bad data:{this.state.badData}</p>
+          </div>
+        ) : null}
+        <button onClick={this.onResult}>Check Full Result</button>
       </div>
     );
   }
