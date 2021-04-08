@@ -113,7 +113,7 @@ def check_PDF():
 
     fileText = ""
 
-    for i in range(0,10):
+    for i in range(0, 10):
         content += pdfReader.getPage(i).extractText() + "\n"
     content = " ".join(content.replace(u"\xa0", " ").strip().split())
 

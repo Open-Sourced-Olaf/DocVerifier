@@ -6,8 +6,10 @@ A tool to summarize and report any flaws in a long agreement/text. This tool wil
 </p>
 
 
+
 ### Deployed Url in DFINITY
 - https://rwlgt-iiaaa-aaaaa-aaaaa-cai.ic0.app/
+
 
 ### Deployed API url
 - https://check-privacy.herokuapp.com/
@@ -67,7 +69,7 @@ In order to install all packages follow the steps below:
 3.  Start the Internet Computer network on your local computer by running the following command:`dfx start --background`
 4.  To deploy the App, run `dfx deploy`
 5.  To get the canister Id of assets, run `dfx canister id custom_greeting_assets`
-6.  The deployed Url will look like this `http://127.0.0.1:8000/?canisterId=ryjl3-tyaaa-aaaaa-aaaba-cai`
+6.  The deployed Url will look like this `http://127.0.0.1:8000/?canisterId=rwlgt-iiaaa-aaaaa-aaaaa-cai`
 7.  Whenever we make any changes in the code, want to rebuild the website.
 
 - Run `dfx build` to rebuild the project
