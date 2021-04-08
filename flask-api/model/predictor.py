@@ -45,8 +45,21 @@ gs_clf = GridSearchCV(text_clf, parameters, n_jobs=-1)
 gs_clf = gs_clf.fit(training_data, training_target)
 
 
-def predict(sentence):
+def predict_nb(sentence):
     if gs_clf.predict([sentence]) == 1:
+        return True  # it's a bad privacy sentence
+    else:
+        return False
+
+text_clf_svm = Pipeline([('vect', CountVectorizer()),
+                      ('tfidf', TfidfTransformer()),
+                      ('clf-svm', SGDClassifier(loss='hinge', penalty='l2',
+                                        alpha=1e-3, random_state=42))
+])
+text_clf_svm = text_clf_svm.fit(training_data, training_target)
+
+def predict_svm(sentence):
+    if text_clf_svm.predict([sentence]) == 1:
         return True  # it's a bad privacy sentence
     else:
         return False
