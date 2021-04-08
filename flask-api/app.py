@@ -1,27 +1,22 @@
 from flask import Flask, jsonify, request, render_template
-import PyPDF2
+import PyPDF2  # package to extract text from PDF
 from werkzeug.utils import secure_filename
-
-# from .ML-Model.predictor import predict_text
 from .model.predictor import predict
 from .scraper.getPolicyText import getPolicies
 from .scraper.getUrls import collect_url_links
-#from getPolicyText import getPolicies
 import os
-# importing module
 import logging
 import re
-
 from flask_cors import CORS, cross_origin
 
+ROOT_FOLDER = "static/"
+UPLOAD_FOLDER = ROOT_FOLDER + "uploads/"
 
 app = Flask(__name__)  # create an app instance
 cors = CORS(app)
 app.config["CORS_HEADERS"] = "Content-Type"
-
-ROOT_FOLDER = "static/"
-UPLOAD_FOLDER = ROOT_FOLDER + "uploads/"
 app.config["UPLOADS"] = UPLOAD_FOLDER
+
 # Create and configure logger
 logging.basicConfig(filename="logger.log",
                     format='%(asctime)s %(message)s',
@@ -35,60 +30,63 @@ logger = logging.getLogger()
 logger.setLevel(logging.DEBUG)
 
 # Test messages
-logger.debug("Harmless debug Message")
-logger.info("Just an information")
-logger.warning("Its a Warning")
-logger.error("Did you try to divide by zero")
-logger.critical("Internet is down")
+# logger.debug("Harmless debug Message")
+# logger.warning("Its a Warning")
+# logger.error("Did you try to divide by zero")
+# logger.critical("Internet is down")
 
 
+# route to scrape current tab URL and then predict using the ML model
 @app.route("/scrape", methods=["GET", "POST"])
 @cross_origin()
 def testfn():
     # POST request
     if request.method == "POST":
         tabUrl = request.get_json()["tabUrl"]
-        # tabUrl.split('/')
-        # print(tabUrl)
         url_list = collect_url_links(tabUrl)  # parse as JSON
-        print(url_list)
+        # get the current tab url
+        logger.info(url_list)
         for link in url_list:
-            print(link)
+            # get the list of privacy policies
+            logger.info(link)
+            # write the scraped data from privacy policy page to a txt file
             with open("output.txt", "w", encoding="utf8") as f:
                 print(getPolicies(link), file=f)
                 logger.info("scraping complete")
         with open("output.txt", encoding="utf8") as f:
+            # read the text file and make predictions
             text = f.read()
-        data = predict_text(text)
+        data = predict_text(text)  # call the model
         message = {"good": data["bad"], "bad": data["bad"]}
+        logger.info("prediction done")
         return jsonify(message)
     return jsonify(message)
 
 
+# endpoint to upload a file to the server
 @app.route("/uploads", methods=["POST"])
 @cross_origin()
 def uploads():
-    # GET request
-    # serialize and use JSON headers
     # POST request
     if request.method == "POST":
+        # get the file
         file = request.files["file"]
+        # save the filename
         filename = secure_filename(file.filename)
-        #  uploaded_folder = create_folder_entry(app.config['UPLOAD_FOLDER'],"uploaded")
+        # save the file in the specified folder
         file.save(os.path.join(app.config["UPLOADS"], file.filename))
+        # rename the file name
         os.rename(os.path.join(app.config["UPLOADS"], filename),
                   os.path.join(app.config["UPLOADS"], "output.pdf"))
-        print("File uploaded to " +
-              os.path.join(app.config["UPLOADS"], filename))
-        print("file", request.files["file"])
-        print(request)
+        logger.info("File uploaded to " +
+                    os.path.join(app.config["UPLOADS"], filename))
+        logger.info("file", request.files["file"])
+        logger.info(request)
         logger.info("upload file done")
-
-        #print("In upload:", pdfFileName)
-
-        return "Sucesss", 200
+    return "Sucesss", 200
 
 
+# endpoint to make the predictions
 @app.route("/predict", methods=["GET"])
 def check_if_bad():
     with open("output.txt", encoding="utf8") as f:
@@ -97,51 +95,35 @@ def check_if_bad():
     return result
 
 
+# route to run the model in the PDF
 @app.route("/checkPDF", methods=["GET"])
 def check_PDF():
     content = ""
     num_pages = 10
-    # p = file(path, "rb")
-    # pdf = pyPdf.PdfFileReader(p)
-    # for i in range(0, num_pages):
-    #     content += pdf.getPage(i).extractText() + "\n"
-    # content = " ".join(content.replace(u"\xa0", " ").strip().split())
-    # return content
     pdfFileObj = open(os.path.join(app.config["UPLOADS"], "output.pdf"), 'rb')
     pdfReader = PyPDF2.PdfFileReader(pdfFileObj)
-
-    fileText = ""
-
-    for i in range(0, 10):
+    for i in range(0, num_pages):
         content += pdfReader.getPage(i).extractText() + "\n"
     content = " ".join(content.replace(u"\xa0", " ").strip().split())
-
     pdfFileObj.close()
-
     result = predict_text(content)
-
+    logger.debug("PDF checked successfully")
     return jsonify(result)
 
 
+# function to predict individual sentences
 def predict_text(textInput):
     sentences = re.split(r' *[\.\?!][\'"\)\]]* *', textInput)
     bad = []
     good = []
     output = {}
-    #sentences = [sentences]
-    #sentence = [request.args.get('sentence')]
     for sentence in sentences:
-        # print(sentence)
-        # print("\n")
         if(len(sentence) > 100):
             if predict(sentence):
                 good.append(sentence)
-                #print(sentence, 'sentence is bad')
             else:
                 bad.append(sentence)
-                #print(sentence, 'sentence is good')
-    data = {'good': good, 'bad': bad}
-
+    data = {'good': good, 'bad': bad}  # return the result to frontend
     return data
 
 
