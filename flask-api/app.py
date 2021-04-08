@@ -2,11 +2,11 @@ from flask import Flask, jsonify, request, render_template
 import PyPDF2
 from werkzeug.utils import secure_filename
 
-
-from predictor import predict
-
-from getUrls import collect_url_links
-from getPolicyText import getPolicies
+# from .ML-Model.predictor import predict_text
+from .model.predictor import predict
+from .scraper.getPolicyText import getPolicies
+from .scraper.getUrls import collect_url_links
+#from getPolicyText import getPolicies
 import os
 # importing module
 import logging
@@ -14,17 +14,16 @@ import re
 
 from flask_cors import CORS, cross_origin
 
-ROOT_FOLDER = "static/"
-UPLOAD_FOLDER = ROOT_FOLDER + "uploads/"
-
 
 app = Flask(__name__)  # create an app instance
 cors = CORS(app)
 app.config["CORS_HEADERS"] = "Content-Type"
 
+ROOT_FOLDER = "static/"
+UPLOAD_FOLDER = ROOT_FOLDER + "uploads/"
 app.config["UPLOADS"] = UPLOAD_FOLDER
 # Create and configure logger
-logging.basicConfig(filename="newfile.log",
+logging.basicConfig(filename="logger.log",
                     format='%(asctime)s %(message)s',
                     filemode='w')
 
@@ -43,7 +42,7 @@ logger.error("Did you try to divide by zero")
 logger.critical("Internet is down")
 
 
-@app.route("/test", methods=["GET", "POST"])
+@app.route("/scrape", methods=["GET", "POST"])
 @cross_origin()
 def testfn():
     # POST request
@@ -61,7 +60,7 @@ def testfn():
         with open("output.txt", encoding="utf8") as f:
             text = f.read()
         data = predict_text(text)
-        message = {"good": data["bad"][0], "bad": data["bad"][0]}
+        message = {"good": data["bad"], "bad": data["bad"]}
         return jsonify(message)
     return jsonify(message)
 

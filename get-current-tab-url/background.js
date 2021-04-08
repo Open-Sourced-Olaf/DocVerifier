@@ -11,7 +11,7 @@ function myFunction() {
     document.getElementById("loader").style.display = "block";
     document.getElementById("loading-text").innerHTML = "Loading...";
 
-    fetch("https://check-privacy.herokuapp.com/test", {
+    fetch("http://localhost:5000/scrape", {
       method: "post",
       headers: {
         Accept: "application/json, text/plain, */*",
@@ -32,5 +32,5 @@ function myFunction() {
 }
 document.getElementById("resultButton").addEventListener("click", predict);
 function predict() {
-  window.open("https://check-privacy.herokuapp.com/predict");
+  window.open("http://localhost:5000/predict");
 }
