@@ -1,10 +1,16 @@
 # DocVerifier
 
 A tool to summarize and report any flaws in a long agreement/text. This tool will help us to protect ourselves from accepting malicious agreetments, privacy policies, terms and conditions etc. It uses Naive Bayes classification to make the predictions.
+<p align="center">
+<img src="demo.gif" >
+</p>
+
 
 ### Deployed Url in DFINITY
+- https://rwlgt-iiaaa-aaaaa-aaaaa-cai.ic0.app/
 
-- https://rnrep-5aaaa-aaaab-aa54a-cai.ic0.app/
+### Deployed API url
+- https://check-privacy.herokuapp.com/
 
 ## How does it work
 
