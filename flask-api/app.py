@@ -1,7 +1,7 @@
 from flask import Flask, jsonify, request, render_template
 import PyPDF2  # package to extract text from PDF
 from werkzeug.utils import secure_filename
-from .model.predictor import predict
+from .model.predictor import predict_nb, predict_svm
 from .scraper.getPolicyText import getPolicies
 from .scraper.getUrls import collect_url_links
 import os
@@ -89,9 +89,10 @@ def uploads():
 # endpoint to make the predictions
 @app.route("/predict", methods=["GET"])
 def check_if_bad():
+    model = request.args.get('model')
     with open("output.txt", encoding="utf8") as f:
         text = f.read()
-    result = predict_text(text)
+    result = predict_text(text, model=model)
     return result
 
 
@@ -112,17 +113,23 @@ def check_PDF():
 
 
 # function to predict individual sentences
-def predict_text(textInput):
+def predict_text(textInput, model="nb"):
     sentences = re.split(r' *[\.\?!][\'"\)\]]* *', textInput)
     bad = []
     good = []
     output = {}
     for sentence in sentences:
         if(len(sentence) > 100):
-            if predict(sentence):
-                good.append(sentence)
-            else:
-                bad.append(sentence)
+            if model == 'nb':
+                if predict_nb(sentence):
+                    good.append(sentence)
+                else:
+                    bad.append(sentence)
+            elif model == 'svm':
+                if predict_svm(sentence):
+                    good.append(sentence)
+                else:
+                    bad.append(sentence)
     data = {'good': good, 'bad': bad}  # return the result to frontend
     return data
 
