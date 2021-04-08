@@ -8,7 +8,7 @@ A tool to summarize and report any flaws in a long agreement/text. This tool wil
 
 
 ### Deployed Url in DFINITY
-- https://rwlgt-iiaaa-aaaaa-aaaaa-cai.ic0.app/
+- https://rnrep-5aaaa-aaaab-aa54a-cai.ic0.app/
 
 
 ### Deployed API url
@@ -84,7 +84,7 @@ In order to install all packages follow the steps below:
 ### Loading the Chrome extension
 
 - Go to the `chrome://extensions` in the browser
-- Click on _load unpacked_ and choose the `get-current-tab-url` folder.
+- Click on _load unpacked_ and choose the `chrome-extension` folder.
 - Publish it in chrome web store
   - To publish your item to the Chrome Web Store, follow these steps:
   1. Create your item's zip file
