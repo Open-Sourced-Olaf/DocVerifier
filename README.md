@@ -6,8 +6,10 @@ A tool to summarize and report any flaws in a long agreement/text. This tool wil
 </p>
 
 
+
 ### Deployed Url in DFINITY
 - https://rwlgt-iiaaa-aaaaa-aaaaa-cai.ic0.app/
+
 
 ### Deployed API url
 - https://check-privacy.herokuapp.com/
