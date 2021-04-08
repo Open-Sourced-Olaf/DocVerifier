@@ -11,7 +11,7 @@ function myFunction() {
     document.getElementById("loader").style.display = "block";
     document.getElementById("loading-text").innerHTML = "Loading...";
 
-    fetch("http://localhost:5000/test", {
+    fetch("http://localhost:5000/scrape", {
       method: "post",
       headers: {
         Accept: "application/json, text/plain, */*",
