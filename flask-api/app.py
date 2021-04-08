@@ -61,7 +61,7 @@ def testfn():
         with open("output.txt", encoding="utf8") as f:
             text = f.read()
         data = predict_text(text)
-        message = {"good": data["bad"][0], "bad": data["bad"][0]}
+        message = {"good": data["bad"], "bad": data["bad"]}
         return jsonify(message)
     return jsonify(message)
 
