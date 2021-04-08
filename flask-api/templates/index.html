@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <style>
+      ul {
+        list-style-type: square;
+        list-style-position: inside;
+        border: 2px solid rgb(14, 14, 27);
+        background-color: rgb(63, 180, 219);
+        padding: 0;
+        /* list-style-image: url(https://url-to-image); */
+      }
+      li {
+        padding: 5px 10px;
+
+        border: 1px solid #131212;
+        margin: 5px;
+        background-color: rgb(239, 241, 241);
+      }
+    </style>
+  </head>
+  <body>
+    <center><h1>See all the bad policies</h1></center>
+    <ul id="list">
+      {% for item in result %}
+      <li id="item">{{item}}</li>
+      {% endfor %}
+    </ul>
+  </body>
+</html>

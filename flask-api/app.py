@@ -34,9 +34,16 @@ logger.setLevel(logging.DEBUG)
 # logger.warning("Its a Warning")
 # logger.error("Did you try to divide by zero")
 # logger.critical("Internet is down")
+data = []
 
+
+@app.route('/', methods=["GET"])
+def home():
+    return render_template('index.html', **locals())
 
 # route to scrape current tab URL and then predict using the ML model
+
+
 @app.route("/scrape", methods=["GET", "POST"])
 @cross_origin()
 def testfn():
@@ -92,24 +99,43 @@ def check_if_bad():
     model = request.args.get('model')
     with open("output.txt", encoding="utf8") as f:
         text = f.read()
-    result = predict_text(text, model=model)
-    return result
+    result = predict_text(text, "nb")
+    result = result["bad"]
+    logger.info("result", result)
+    return render_template('index.html', **locals())
 
 
 # route to run the model in the PDF
 @app.route("/checkPDF", methods=["GET"])
 def check_PDF():
-    content = ""
-    num_pages = 10
-    pdfFileObj = open(os.path.join(app.config["UPLOADS"], "output.pdf"), 'rb')
-    pdfReader = PyPDF2.PdfFileReader(pdfFileObj)
-    for i in range(0, num_pages):
-        content += pdfReader.getPage(i).extractText() + "\n"
-    content = " ".join(content.replace(u"\xa0", " ").strip().split())
-    pdfFileObj.close()
-    result = predict_text(content)
-    logger.debug("PDF checked successfully")
+    if request.method == "GET":
+        content = ""
+        num_pages = 100
+        pdfFileObj = open(os.path.join(
+            app.config["UPLOADS"], "output.pdf"), 'rb')
+        pdfReader = PyPDF2.PdfFileReader(pdfFileObj)
+        for i in range(0, num_pages):
+            content += pdfReader.getPage(i).extractText() + "\n"
+        content = " ".join(content.replace(u"\xa0", " ").strip().split())
+        pdfFileObj.close()
+        result = predict_text(content, "svm")
+        global data
+        data = result["good"]
+        logger.info("data", data)
+        logger.debug("PDF checked successfully")
+        return jsonify(result)
     return jsonify(result)
+ # redirect after pdf is checked
+
+
+@app.route("/redirect", methods=["GET"])
+def redirect():
+    global data
+    result = data
+    logger.debug("redirected data", data)
+    return render_template('index.html', **locals())
+
+# function to predict individual sentences
 
 
 # function to predict individual sentences
