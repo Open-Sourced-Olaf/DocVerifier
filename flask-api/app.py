@@ -99,8 +99,9 @@ def check_if_bad():
     model = request.args.get('model')
     with open("output.txt", encoding="utf8") as f:
         text = f.read()
-    result = predict_text(text, model=model)
+    result = predict_text(text, "nb")
     result = result["bad"]
+    logger.info("result", result)
     return render_template('index.html', **locals())
 
 
@@ -137,13 +138,13 @@ def redirect():
 # function to predict individual sentences
 
 
-def predict_text(textInput, model="svm"):
+# function to predict individual sentences
+def predict_text(textInput, model="nb"):
     sentences = re.split(r' *[\.\?!][\'"\)\]]* *', textInput)
     bad = []
     good = []
     output = {}
     for sentence in sentences:
-      # check for number of words
         if(len(sentence) > 100):
             if model == 'nb':
                 if predict_nb(sentence):
@@ -155,9 +156,8 @@ def predict_text(textInput, model="svm"):
                     good.append(sentence)
                 else:
                     bad.append(sentence)
-
-        data = {'good': good, 'bad': bad}  # return the result to frontend
-        return data
+    data = {'good': good, 'bad': bad}  # return the result to frontend
+    return data
 
 
 if __name__ == "__main__":  # on running python app.py
