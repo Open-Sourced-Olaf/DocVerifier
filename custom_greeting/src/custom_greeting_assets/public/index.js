@@ -1,7 +1,6 @@
 import { render } from "react-dom";
 import axios from "axios";
 import * as React from "react";
-//import logo from "./logo.png";
 import "./style.css";
 
 class App extends React.Component {
@@ -14,14 +13,14 @@ class App extends React.Component {
       goodData: "good",
       badData: "bad",
     };
-
-    //this.onCheckFile = this.onCheckFile.bind(this);
   }
 
+  // Redirect to result page
   onResult = () => {
     window.open("http://localhost:5000/checkPDF");
   };
-  // On file select (from the pop up)
+
+  // On selecting file from pop-up
   onFileChange = (event) => {
     // Update the state
     this.setState({ selectedFile: event.target.files[0] });
@@ -30,22 +29,13 @@ class App extends React.Component {
   // On file upload (click the upload button)
   onFileUpload = async () => {
     this.setState({ uploading: true });
+
     // Create an object of formData
     const formData = new FormData();
-
-    // Update the formData object
-    // formData.append(
-    //   "myFile",
-    //   this.state.selectedFile,
-    //   this.state.selectedFile.name
-    // );
     formData.append("file", this.state.selectedFile);
-    // Details of the uploaded file
-    console.log(this.state.selectedFile);
 
     // Request made to the backend api
     // Send formData object
-    // axios.post("http://localhost:5000/uploads", formData);
     const res = await axios.post("http://localhost:5000/uploads", formData);
     console.log("Response ", res.data);
     if (res.status === 200) {
@@ -55,6 +45,7 @@ class App extends React.Component {
       console.log("error");
     }
 
+    // Fetch data from PDF
     const response = await axios.get("http://localhost:5000/checkPDF");
     console.log("res data", response.data);
     console.log("good", response.data["good"][0]);
@@ -62,25 +53,9 @@ class App extends React.Component {
     this.setState({ goodData: response.data["good"][0] });
     this.setState({ badData: response.data["bad"][0] });
     this.setState({ uploading: false });
-    /* fetch("http://localhost:5000/checkPDF", {
-      method: "get",
-    })
-      .then(function (res) {
-        return res.json();
-      })
-      .then(function (data) {
-        console.log(data);
-
-        console.log("bad", data["bad"][0]);
-
-        console.log("good", data["good"][0]);
-        this.setState({ goodData: data });
-       
-      }); */
   };
 
-  // File content to be displayed after
-  // file upload is complete
+  // Metadata about file (Called after file gets uploaded)
   fileData = () => {
     if (this.state.selectedFile) {
       return (
@@ -101,7 +76,7 @@ class App extends React.Component {
       return (
         <div>
           <br />
-          <h4>Choose before Pressing the Upload button</h4>
+          <h4>Choose file before pressing the Upload button</h4>
         </div>
       );
     }
@@ -138,10 +113,7 @@ class App extends React.Component {
           <input type="file" onChange={this.onFileChange} />
           <button onClick={this.onFileUpload}>Check the file</button>
           <div>
-            {/* <button>Check the File</button> */}
             <br />
-            {/* <h4 id="message-1">Choose before Pressing the Upload button</h4> */}
-            {/* {this.fileData()} */}
             <center></center>
             {this.state.uploading ? (
               <div
