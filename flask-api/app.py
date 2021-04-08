@@ -36,7 +36,13 @@ logger.setLevel(logging.DEBUG)
 # logger.critical("Internet is down")
 
 
+@app.route('/', methods=["GET"])
+def home():
+    return render_template('index.html', **locals())
+
 # route to scrape current tab URL and then predict using the ML model
+
+
 @app.route("/scrape", methods=["GET", "POST"])
 @cross_origin()
 def testfn():
@@ -92,7 +98,8 @@ def check_if_bad():
     with open("output.txt", encoding="utf8") as f:
         text = f.read()
     result = predict_text(text)
-    return result
+    result = result["bad"]
+    return render_template('index.html', **locals())
 
 
 # route to run the model in the PDF
@@ -118,7 +125,8 @@ def predict_text(textInput):
     good = []
     output = {}
     for sentence in sentences:
-        if(len(sentence) > 100):
+        # check for number of words
+        if(len(sentence) > 100 and (sentence[0]).isupper()):
             if predict(sentence):
                 good.append(sentence)
             else:
