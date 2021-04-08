@@ -34,6 +34,7 @@ logger.setLevel(logging.DEBUG)
 # logger.warning("Its a Warning")
 # logger.error("Did you try to divide by zero")
 # logger.critical("Internet is down")
+data = []
 
 
 @app.route('/', methods=["GET"])
@@ -106,50 +107,57 @@ def check_if_bad():
 # route to run the model in the PDF
 @app.route("/checkPDF", methods=["GET"])
 def check_PDF():
-    content = ""
-    num_pages = 10
-    pdfFileObj = open(os.path.join(app.config["UPLOADS"], "output.pdf"), 'rb')
-    pdfReader = PyPDF2.PdfFileReader(pdfFileObj)
-    for i in range(0, num_pages):
-        content += pdfReader.getPage(i).extractText() + "\n"
-    content = " ".join(content.replace(u"\xa0", " ").strip().split())
-    pdfFileObj.close()
-    result = predict_text(content)
-    logger.debug("PDF checked successfully")
+    if request.method == "GET":
+        content = ""
+        num_pages = 100
+        pdfFileObj = open(os.path.join(
+            app.config["UPLOADS"], "output.pdf"), 'rb')
+        pdfReader = PyPDF2.PdfFileReader(pdfFileObj)
+        for i in range(0, num_pages):
+            content += pdfReader.getPage(i).extractText() + "\n"
+        content = " ".join(content.replace(u"\xa0", " ").strip().split())
+        pdfFileObj.close()
+        result = predict_text(content, "svm")
+        global data
+        data = result["good"]
+        logger.info("data", data)
+        logger.debug("PDF checked successfully")
+        return jsonify(result)
     return jsonify(result)
+ # redirect after pdf is checked
 
+
+@app.route("/redirect", methods=["GET"])
+def redirect():
+    global data
+    result = data
+    logger.debug("redirected data", data)
+    return render_template('index.html', **locals())
 
 # function to predict individual sentences
-def predict_text(textInput, model="nb"):
+
+
+def predict_text(textInput, model="svm"):
     sentences = re.split(r' *[\.\?!][\'"\)\]]* *', textInput)
     bad = []
     good = []
     output = {}
     for sentence in sentences:
-
-
-<< << << < HEAD
       # check for number of words
-  if(len(sentence) > 100 and (sentence[0]).isupper()):
-       if predict(sentence):
-            good.append(sentence)
-        else:
-            bad.append(sentence)
-== == ===
-  if(len(sentence) > 100):
-       if model == 'nb':
-            if predict_nb(sentence):
-                good.append(sentence)
-            else:
-                bad.append(sentence)
-        elif model == 'svm':
-            if predict_svm(sentence):
-                good.append(sentence)
-            else:
-                bad.append(sentence)
->>>>>> > 287a48928f3f28cd3f3ae1010d9e7a721e825f1e
-  data = {'good': good, 'bad': bad}  # return the result to frontend
-   return data
+        if(len(sentence) > 100):
+            if model == 'nb':
+                if predict_nb(sentence):
+                    good.append(sentence)
+                else:
+                    bad.append(sentence)
+            elif model == 'svm':
+                if predict_svm(sentence):
+                    good.append(sentence)
+                else:
+                    bad.append(sentence)
+
+        data = {'good': good, 'bad': bad}  # return the result to frontend
+        return data
 
 
 if __name__ == "__main__":  # on running python app.py
