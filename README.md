@@ -102,7 +102,17 @@ The following is a high-level overview of relevant files and folders.
 ```
 DocVerifier/
 ├── flask-api/
+│   ├── datasets
 │   ├── static/uploads
+│   ├── model
+│   ├── scraper
+│   ├── templates
+│   ├── .gitignore
+│   ├── Procfile
+│   ├── nltk.txt
+│   ├── requirements.txt
+│   ├── runtime.txt
+│   ├── output.txt
 │   └── app.py
 
 └── custom_greeting/
@@ -113,18 +123,31 @@ DocVerifier/
     │   ├── custom_greeting_assets/
     │   │   ├── assets
     │   │   └── public
-         ├── dfx.json
-         ├── package.json
-         |__ webpack.config.js
-         |__tsconfig.json
-         |__ .gitignore
+    ├── dfx.json
+    ├── package.json
+    |__ webpack.config.js
+    |__ tsconfig.json
+    |__ canister_ids.json
+    |__ README.md
+    |__ package-lock.json
+    |__ .gitignore
  |
- |__get-current-tab-url
+ |__chrome-extension
        |_ background.js
        |_ icon.png
        |_ manifest.json
        |_ window.html
+       |_ icon.svg
        |_ style.css
+|__images
+       |_ demo.gif
+|__jupyter-notebooks
+       |_ privacy_policy_predictor.ipynb
+       |_ web_Scraping.ipynb
+|__ .gitignore
+|__ CODE_OF_CONDUCT.md
+|__ LICENSE
+|__ README.md
 
 ```
 
