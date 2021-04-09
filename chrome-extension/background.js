@@ -25,7 +25,7 @@ function myFunction() {
       })
       .then(function (data) {
         // Display the bad policies as output and hide loader
-        document.getElementById("out").innerHTML = data["bad"][0];
+        document.getElementById("out").innerHTML = data["bad"][7];
         document.getElementById("resultButton").style.display = "block";
         document.getElementById("loader").style.display = "none";
         document.getElementById("loading-text").innerHTML = "";
@@ -33,7 +33,7 @@ function myFunction() {
   });
 }
 
-// Redirect to the result page 
+// Redirect to the result page
 document.getElementById("resultButton").addEventListener("click", predict);
 function predict() {
   window.open("http://localhost:5000/predict");
