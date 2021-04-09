@@ -17,7 +17,7 @@ class App extends React.Component {
 
   // Redirect to result page
   onResult = () => {
-    window.open("http://localhost:5000/checkPDF");
+    window.open("http://localhost:5000/redirect");
   };
 
   // On selecting file from pop-up
@@ -114,27 +114,29 @@ class App extends React.Component {
           <button onClick={this.onFileUpload}>Check the file</button>
           <div>
             <br />
-            <center></center>
-            {this.state.uploading ? (
-              <div
-                style={{
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "center",
-                }}
-                className="loader"
-              ></div>
-            ) : null}
+            <center>
+              {this.state.uploading ? (
+                <div
+                  style={{
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                  }}
+                  className="loader"
+                ></div>
+              ) : null}
+            </center>
+
             {this.state.goodData ? (
               <div>
                 <h2> Output : </h2>
                 <div class="output">
                   <p>
-                    <b>Good data: </b>
+                    <b>Bad data: </b>
                     {this.state.goodData}
                   </p>
                   <p>
-                    <b>Bad data:</b> {this.state.badData}
+                    <b>Good data:</b> {this.state.badData}
                   </p>
                 </div>
               </div>

@@ -1,44 +1,100 @@
 We do not sell your personal information to third parties.
 We established ourselves as a not-for-profit organization so that our mission of education and your trust will not be in conflict with a for-profit motive.
-We take extra precautions for our younger learners under the age of 13, including restricting child accounts to automatically block features that would allow a child to post or disclose personal information
-We do not display advertising on our website.
+We take extra precautions for our younger learners under the age of 13, including restricting child accounts to automatically block features that would allow a child to post or disclose personal information.
+We do not display advertising on the service.
 We don't collect the precise geolocation of you or your device.
-You may be able to change the settings on your computer or mobile device to prevent it from providing us with any location information
-We will also not be able to delete information associated with School User accounts that the School User has associated with a personal account
-Please note that we cannot comply with a School's request to delete personal information in a user account except for School User accounts created by a School
-Choosing whether we share your personal information with other companies so they can send you offers and promotions about their products and services
+You may be able to change the settings on your computer or mobile device to prevent it from providing us with any location information.
+We will also not be able to delete information associated with School User accounts that the School User has associated with a personal account.
+Please note that the service cannot comply with a School's request to delete personal information in a user account except for School User accounts created by a School.
+Choosing whether we share your personal information with other companies so they can send you offers and promotions about their products and services.
 Choosing to control targeted advertising you receive within applications by using the settings and choices made available to you through your device(s), for example, by re-setting your device’s advertising identifier and/or opting out of interest-based ads.
-If collection of personal information is mandatory, we will make that clear at the point of collection so that you can make an informed decision whether to participate
-We don’t show you personalized ads based on sensitive categories, such as race, religion, sexual orientation, or health
-We don’t share information that personally identifies you with advertisers, such as your name or email unless you ask us to
-Decide what types of activity you’d like saved in your account
-Control what others see about you across Google services
-If Google is involved in a merger, acquisition, or sale of assets, we’ll continue to ensure the confidentiality of your personal information and give affected users notice before personal information is transferred or becomes subject to a different privacy policy
-You may remove your Content from the Service at any time
-You may stop using the Service at any time
-You also have the option to download a copy of your data first
-When the Service requires or includes downloadable software (such as the YouTube Studio application), you give permission for that software to update automatically on your device once a new version or feature is available, subject to your device settings
-Keep in mind that information that others have shared about you is not part of your account and will not be deleted when you delete your account
-We’ll notify you before we make changes to this policy and give you the opportunity to review and comment on the revised policy before continuing to use our Services
+If collection of personal information is mandatory, we will make that clear at the point of collection so that you can make an informed decision on whether to participate.
+We don’t show you personalized ads based on sensitive categories, such as race, religion, sexual orientation, or health.
+We don’t share information that personally identifies you with advertisers, such as your name or email unless you ask us to.
+Decide what types of activity you’d like saved in your account.
+Control what others see about you across Google services.
+If the service is involved in a merger, acquisition, or sale of assets, we’ll continue to ensure the confidentiality of your personal information and give affected users notice before personal information is transferred or becomes subject to a different privacy policy.
+You may remove your Content from the Service at any time.
+You may stop using the Service at any time.
+You also have the option to download a copy of your data.
+When the Service requires or includes downloadable software, you give permission for that software to update automatically on your device once a new version or feature is available, subject to your device settings.
+Keep in mind that information that others have shared about you is not part of your account and will not be deleted when you delete your account.
+We’ll notify you before we make changes to this policy and give you the opportunity to review and comment on the revised policy before continuing to use our Services.
 You can choose to not provide us with Personal Information.
-You may revoke our access to your account on any Integrated Service, such as Google or Facebook, at any time by updating the appropriate settings in the account preferences of the respective Integrated Service
-You can choose not to receive these emails by clicking the unsubscribe link in any e-mail or via your Settings page at
-We will clearly and transparently disclose our data policies and practices to our users
-We do not disclose Student Records for targeted advertising purposes
-We will not make any material changes to our Privacy Policy or contractual agreements that relate to the collection or use of Student Records without first giving notice to the School and providing a choice before the Student Records are used in a materially different manner than was disclosed when the information was collected
-we do not read or listen to the content of your messages and/or calls made privately
-we do not store those messages once they have been delivered to their destination (which on average takes less than one second
-If for some reason the message wasn’t delivered to its destination within up to 2 weeks, it will be deleted from our servers
-We also don't want your personal information for any longer than we need it, so we only keep it long enough to do what we collected it for. Once we don't need it, we take steps to destroy it unless we are required by law to keep it longer
-You can control individual cookie preferences, indicate your cookie preferences to others, and opt-out of web analytics and optimization tools
-If you have configured your browser to send a “Do Not Track” signal when accessing our websites, Mozilla will not utilize any of the tools described in the Metrics section
-Firefox always asks before determining and sharing your location with a requesting website
-The Firefox Better Web Add-on does not collect any data.
-Mozilla has written agreements in place with these companies (third parties) contractually obligating them to protect your information
-Mozilla does not receive or store your payment details.
-If Thunderbird crashes, we will ask you to share a report with more detailed information about the crash, but you always have the choice to decline.
-You can configure your browser to refuse all cookies or to indicate when a cookie is being sent
+You may revoke the service’s access to your account on any Integrated Service, at any time by updating the appropriate settings in the account preferences of the respective Integrated Service.
+You can choose not to receive these emails by clicking the unsubscribe link in any e-mail or via your Settings page.
+We will clearly and transparently disclose our data policies and practices to our users.
+We do not disclose records for targeted advertising purposes.
+We will not make any material changes to our Privacy Policy or contractual agreements that relate to the collection or use of records without first giving notice to the School and providing a choice before the Student Records are used in a materially different manner than was disclosed when the information was collected.
+We do not read or listen to the content of your messages and/or calls made privately.
+We do not store those messages once they have been delivered to their destination.
+If for some reason the message wasn’t delivered to its destination within up to 2 weeks, it will be deleted from our servers. 
+We also don't want your personal information for any longer than we need it, so we only keep it long enough to do what we collected it for. Once we don't need it, we take steps to destroy it unless we are required by law to keep it longer.
+You can control individual cookie preferences, indicate your cookie preferences to others, and opt out of web analytics and optimization tools.
+If you have configured your browser to send a “Do Not Track” signal when accessing our websites, the service will not utilize any of the tools described in the Metrics section.
+The service always asks before determining and sharing your location with a requesting website.
+The web add-on does not collect any data.
+The service has written agreements in place with these companies (third parties) contractually obligating them to protect your information.
+The service does not receive or store your payment details.
+If the service crashes, we will ask you to share a report with more detailed information about the crash, but you always have the choice to decline.
+You can configure your browser to refuse all cookies or to indicate when a cookie is being sent.
 You can edit or delete your account at any time.
 We do not receive your credit card number or other financial information.
 We use Internet log files (which contain technical data such as your IP address) to monitor traffic on our Services, troubleshoot technical problems, detect and prevent fraud, and enforce our User Agreement.
 You can stop all information collection by an app by uninstalling it using the standard uninstall process for your device.
+You can also use the service under a pseudonym if you prefer not to use your name.
+We give you control through your settings to limit the data we collect from you and how we use it, and to control things like account security, marketing preferences, apps that can access your account, and address book contacts you’ve uploaded to the service.
+We give you transparency into that information, and you can modify or correct it at any time.
+We use your contact information, such as your email address or phone number, to authenticate your account and keep it - and our services - secure, and to help prevent spam, fraud, and abuse.
+We will use information from that service, including your email address, friends, or contacts list, to recommend other accounts or content to you or to recommend your account or content to others.
+We share the content of your Direct Messages with the people you’ve sent them to; we do not use them to serve you ads.
+Your Privacy and safety settings let you decide whether your Tweets are publicly available on the service.
+We collect information about your preferences to make your use of the Site more productive through the use of cookies.
+We don’t claim ownership of Your Content. 
+Your Content remains Your Content and you are responsible for it.
+We do not use what you say in email, chat, video calls or voice mail, or your documents, photos, or other personal files, to target advertising to you.
+You cannot transfer your Microsoft account credentials to another user or entity.
+We may suspend the Services or terminate the Agreement if you, your users, or attendees are using the Services in a manner that is likely to cause harm to us.
+You will be notified and we'll provide clear reasoning, and we hope to work with you to resolve the problem so your account can be reactivated.
+IP addresses of website visitors are not tracked.
+Furthermore, our website visit statistics tool is configured to anonymize visitor IP address data by not storing the last digits of all IP addresses. 
+We also never store connection logs, meaning no logs of your IP address, your outgoing VPN IP address, connection timestamp, or session duration.
+If you choose not to create an account and don’t use push notifications, no data is stored about you on our servers.
+You may cancel your Paid Account at any time. 
+You may discontinue your use of Presearch services at any time.
+We do not use cookies to collect Personal Information.
+Cookies are not used to identify you personally and are not used for any purpose other than those described here.
+No data that identifies you or that can be linked to you as an individual leaves the browser on your device.
+The service shares your personal data only when it is necessary to offer the Service, legally required, or permitted by you.
+You can choose for us not to share your information with other sites to personalize those ads as described in the “Choices you have about your information” section.
+You may opt out of receiving some or all categories of promotional communications from us by following the instructions in those communications or by updating your email options in your account preferences here.
+You can also use Download My Data to obtain a copy of the information that isn’t available in our apps in a portable format, so you can move it or store it wherever you want.
+You can request copies of paper and electronic records (including recorded calls, where applicable) about you that we hold, share or use.
+This service allows you to retrieve an archive of your data.
+We’ll only contact you when we need to or when you’ve given us permission.
+You can decide whether we’ll show you personalized ads or not through your in-app Privacy Settings.
+The service will not collect mobile phone numbers and names associated with such mobile phone numbers of the persons in such user’s contact lists and/or address books.
+You are not required to provide the personal data that we have requested.
+The service uses your personal data only when we have a valid legal basis to do so.
+The service does not use algorithms or profiling to make any decision that would significantly affect you without the opportunity for human review.
+If you prefer that the service not use cookies, we provide you with the means to disable their use.
+Our service sets cookies expressly for the purpose of security. These cookies do not contain any personally identifiable information.
+No cookies are used by default.
+We do not store any personal information in the cookie.
+Our service sets cookies expressly for the purpose of security.
+We do not do any targeted advertising or any profiling.
+If you believe that we have not been able to assist with your complaint or concern, and you are located in the EEA, you have the right to lodge a complaint with the competent supervisory authority.
+In many countries, you have a right to lodge a complaint with the appropriate data protection authority if you have concerns about how NGS processes your personal data.
+In case of a violation of your rights, you have the right to lodge a complaint to a competent supervisory authority.
+You are entitled to lodge a complaint with a competent data protection regulator if you consider that we have breached your data protection rights.
+You may withdraw your consent for a specific purpose or object to the processing of your personal information at any time.
+Complete details on each type of Personal Data collected are provided in the dedicated sections of this privacy policy or by specific explanation texts displayed prior to the Data collection.
+We may delete inactive accounts and associated projects and repositories after a period of twelve (12) months.
+The service does not intentionally collect sensitive personal information, such as social security numbers, genetic data, health information, or religious information.
+We use Anonymous Information such as web or mobile pages you have viewed, in order to analyze request and usage patterns so that we may improve our products and services, enhance our user experience, and gather broad demographic information for aggregate use.
+We will not disclose financial information that is part of your Personal Information unless you request or authorize that we do so.
+This service provides archives of their terms of service so that changes can be viewed over time.
+You may not assign your agreement with the company.
+You may also refer a complaint to your local data protection authority and we will work with them to resolve your concern.
+We will not reduce your rights under this Privacy Policy without your explicit consent.
+We always indicate the date the last changes were published and if changes are significant, we’ll provide a more prominent notice.
