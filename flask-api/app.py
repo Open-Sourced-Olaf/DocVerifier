@@ -1,9 +1,9 @@
 from flask import Flask, jsonify, request, render_template
 import PyPDF2  # package to extract text from PDF
 from werkzeug.utils import secure_filename
-from .model.predictor import predict_nb, predict_svm
-from .scraper.getPolicyText import getPolicies
-from .scraper.getUrls import collect_url_links
+from model.predictor import predict_nb, predict_svm
+from scraper.getPolicyText import getPolicies
+from scraper.getUrls import collect_url_links
 import os
 import logging
 import re
