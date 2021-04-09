@@ -37,21 +37,21 @@ class App extends React.Component {
     // Request made to the backend api
     // Send formData object
     const res = await axios.post("http://localhost:5000/uploads", formData);
-    console.log("Response ", res.data);
+    //console.log("Response ", res.data);
     if (res.status === 200) {
-      console.log("data");
-      console.log(res.data);
+      // console.log("data");
+      // console.log(res.data);
     } else {
-      console.log("error");
+      //console.log("error");
     }
 
     // Fetch data from PDF
     const response = await axios.get("http://localhost:5000/checkPDF");
-    console.log("res data", response.data);
-    console.log("good", response.data["good"][0]);
-    console.log("good", response.data["bad"][0]);
-    this.setState({ goodData: response.data["good"][0] });
-    this.setState({ badData: response.data["bad"][0] });
+   // console.log("res data", response.data);
+   // console.log("good", response.data["good"][0]);
+   // console.log("good", response.data["bad"][0]);
+    this.setState({ goodData: response.data["good"][10] });
+    this.setState({ badData: response.data["bad"][4] });
     this.setState({ uploading: false });
   };
 
@@ -133,10 +133,10 @@ class App extends React.Component {
                 <div class="output">
                   <p>
                     <b>Bad data: </b>
-                    {this.state.goodData}
+                    {this.state.badData}
                   </p>
                   <p>
-                    <b>Good data:</b> {this.state.badData}
+                    <b>Good data:</b> {this.state.goodData}
                   </p>
                 </div>
               </div>

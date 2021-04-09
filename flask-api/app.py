@@ -110,12 +110,14 @@ def check_if_bad():
 def check_PDF():
     if request.method == "GET":
         content = ""
-        num_pages = 100
+        num_pages = 10
         pdfFileObj = open(os.path.join(
             app.config["UPLOADS"], "output.pdf"), 'rb')
         pdfReader = PyPDF2.PdfFileReader(pdfFileObj)
         for i in range(0, num_pages):
             content += pdfReader.getPage(i).extractText() + "\n"
+            logger.info("content", content)
+
         content = " ".join(content.replace(u"\xa0", " ").strip().split())
         pdfFileObj.close()
         result = predict_text(content, "svm")
