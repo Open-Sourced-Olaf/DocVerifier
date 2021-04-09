@@ -56,7 +56,9 @@ In order to install all packages follow the steps below:
 1.  Move to flask-api folder `cd flask-api`
 2.  For installing virtual environment - `python3 -m pip install --user virtualenv`
 3.  Create A Virtual env - `python3 -m venv env`
-4.  Activate virtual env - `source env/bin/activate`
+4.  Activate virtual env 
+      - For Mac/Linux : `source env/bin/activate`
+      - For Windows : `.\env\Scripts\activate`
 5.  `pip3 install -r requirements.txt`
 6.  `flask run`
 
