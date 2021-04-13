@@ -14,6 +14,9 @@ A tool to summarize and report any flaws in a long agreement/text. This tool wil
 ### Deployed API url
 - https://check-privacy.herokuapp.com/
 
+### Deployed extension.
+- https://addons.mozilla.org/addon/anjali-soni/
+
 ## How does it work
 
 ### For Chrome Extension
