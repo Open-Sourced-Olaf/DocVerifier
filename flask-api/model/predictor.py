@@ -9,11 +9,11 @@ import re #import regex
 
 
 good_privacy = []
-with open("datasets/good_privacy.txt", "r", encoding="utf8") as f:
+with open("../datasets/good_privacy.txt", "r", encoding="utf8") as f:
     for line in f:
         good_privacy.append(line.rstrip())
 bad_privacy = []
-with open("datasets/bad_privacy.txt", "r", encoding="utf8") as f:
+with open("../datasets/bad_privacy.txt", "r", encoding="utf8") as f:
     for line in f:
         bad_privacy.append(line.rstrip())
 
