@@ -50,9 +50,13 @@ def testfn():
     # POST request
     if request.method == "POST":
         tabUrl = request.get_json()["tabUrl"]
-        url_list = collect_url_links(tabUrl)  # parse as JSON
+        currentTabUrl = tabUrl.split('/')
+        url = "https://"+currentTabUrl[2]
+        logger.info("tab url", url)
+
+        url_list = collect_url_links(url)  # parse as JSON
         # get the current tab url
-        logger.info(url_list)
+        logger.info("privacy urls", url_list)
         for link in url_list:
             # get the list of privacy policies
             logger.info(link)

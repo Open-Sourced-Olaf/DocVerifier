@@ -1,20 +1,28 @@
 from bs4 import BeautifulSoup
 import requests
 import re
+import time
+import random
 
 # function to get all the policy urls from a website
 
 
 def collect_url_links(url_link) -> list:
+
+    
     url_list = []
     pattern = re.compile(r'^http')
     source = requests.get(url_link).text
+    # List for Randomizing our request rate
+    rate = [i/10 for i in range(10)]
     soup = BeautifulSoup(source, 'lxml')
     a_tag = soup.find_all("a")  # Gives you the list of all the a tags
     for i in a_tag:
         if i.text in ["Privacy", "Terms", "Privacy Policy", "Terms of Service"]:
             url = i["href"]
             url_list.append(url)
+            # Randomizing our request rate
+        time.sleep(random.choice(rate))
 
     for i in range(len(url_list)):
         matches = pattern.finditer(url_list[i])
