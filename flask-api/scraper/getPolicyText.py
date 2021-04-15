@@ -9,6 +9,7 @@ nltk.download("words")
 
 
 def getPolicies(url_link):
+    
     source = requests.get(url_link).text
     soup = BeautifulSoup(source, "lxml")
     policies = soup.find("body")
